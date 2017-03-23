@@ -47,7 +47,7 @@ react_names.close
 begin
   react_places = File.open(react_places_path, "r:utf-8")
 rescue Errno::ENOENT => e
-  puts "Файл с именами не найден"
+  puts "Файл с местами не найден"
   abort e.message
 end
 
@@ -57,7 +57,7 @@ react_places.close
 begin
   who_is_it = File.open(who_is_it_path, "r:utf-8")
 rescue Errno::ENOENT => e
-  puts "Файл с именами не найден"
+  puts "Файл с вопросом эт кто не найден"
   abort e.message
 end
 
@@ -67,7 +67,7 @@ who_is_it.close
 begin
   where_are_you = File.open(where_are_you_path, "r:utf-8")
 rescue Errno::ENOENT => e
-  puts "Файл с именами не найден"
+  puts "Файл с вопросом эт где не найден"
   abort e.message
 end
 
