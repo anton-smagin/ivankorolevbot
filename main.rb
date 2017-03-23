@@ -1,15 +1,5 @@
 # Телеграм-бот
-
-# Этот код необходим при использовании русских букв на Windows
-# if (Gem.win_platform?)
-#   Encoding.default_external = Encoding.find(Encoding.locale_charmap)
-#   Encoding.default_internal = __ENCODING__
-
-#   [STDIN, STDOUT].each do |io|
-#     io.set_encoding(Encoding.default_external, Encoding.default_internal)
-#   end
-# end
-###
+# encoding=utf-8 
 
 require 'telegram/bot'
 
@@ -84,13 +74,13 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
         )
       else
         react_names_lines.each do |name|
-          if /#{name}/iu =~ message.text
+          if /#{name}/i =~ message.text
             bot.api.send_message(chat_id: message.chat.id, text: who_is_it_lines.sample) 
             break
           end
         end
         react_places_lines.each do |place|
-          if /#{place}/iu =~ message.text
+          if /#{place}/i =~ message.text
             bot.api.send_message(chat_id: message.chat.id, text: where_are_you_lines.sample) 
             break
           end
