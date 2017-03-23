@@ -3,14 +3,10 @@
 
 require 'telegram/bot'
 
-TOKEN = '312322718:AAHmzp2WRQljmVIlh_gPKHD0TAWo4qMqpIE'#ENV['TELEGRAM_BOT_API_TOKEN']
+TOKEN = ENV['TELEGRAM_BOT_API_TOKEN']
 
-# путь к файлу с ответами
 require "./data/chat"
 require "./data/react"
-#require "#{File.dirname(__FILE__)}/data/react_places.rb"
-#require "#{File.dirname(__FILE__)}/data/who_is_it.rb"
-#require "#{File.dirname(__FILE__)}/data/where_are_you.rb"
 
 Telegram::Bot::Client.run(TOKEN) do |bot|
   bot.listen do |message|
