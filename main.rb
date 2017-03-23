@@ -84,13 +84,13 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
         )
       else
         react_names_lines.each do |name|
-          if /#{name}/i =~ message.text
+          if /#{name}/iu =~ message.text
             bot.api.send_message(chat_id: message.chat.id, text: who_is_it_lines.sample) 
             break
           end
         end
         react_places_lines.each do |place|
-          if /#{place}/i =~ message.text
+          if /#{place}/iu =~ message.text
             bot.api.send_message(chat_id: message.chat.id, text: where_are_you_lines.sample) 
             break
           end
