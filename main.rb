@@ -86,17 +86,15 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
         react_names_lines.each do |name|
           if /#{name}/i =~ message.text
             bot.api.send_message(chat_id: message.chat.id, text: who_is_it_lines.sample) 
-            exit
+            break
           end
         end
         react_places_lines.each do |place|
           if /#{place}/i =~ message.text
             bot.api.send_message(chat_id: message.chat.id, text: where_are_you_lines.sample) 
-            exit
+            break
           end
-        end
-        sleep 1
-        bot.api.send_message(chat_id: message.chat.id, text: philosophy_lines.sample) if rand() < 1
-    end
+       end
+      bot.api.send_message(chat_id: message.chat.id, text: philosophy_lines.sample) if rand() < 1
   end
 end
