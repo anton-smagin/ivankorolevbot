@@ -33,9 +33,8 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
             break
           end
        end
-      # Chat::PHILOSOPHY.sample
       rand_num = rand()
-      bot.api.send_message(chat_id: message.chat.id, text: rand_num) 
+      bot.api.send_message(chat_id: message.chat.id, text: Chat::PHILOSOPHY.sample) if rand_num < 0.01 
     end
   end
 end
