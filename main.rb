@@ -96,5 +96,6 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
           end
        end
       bot.api.send_message(chat_id: message.chat.id, text: philosophy_lines.sample) if rand() < 1
+    end
   end
 end
