@@ -47,7 +47,7 @@ react_names.close
 begin
   react_places = File.open(react_places_path, "r:utf-8")
 rescue Errno::ENOENT => e
-  puts "Файл с местами не найден"
+  puts "Файл с именами не найден"
   abort e.message
 end
 
@@ -57,7 +57,7 @@ react_places.close
 begin
   who_is_it = File.open(who_is_it_path, "r:utf-8")
 rescue Errno::ENOENT => e
-  puts "Файл с вопросом эт кто не найден"
+  puts "Файл с именами не найден"
   abort e.message
 end
 
@@ -67,7 +67,7 @@ who_is_it.close
 begin
   where_are_you = File.open(where_are_you_path, "r:utf-8")
 rescue Errno::ENOENT => e
-  puts "Файл с вопросом эт где не найден"
+  puts "Файл с именами не найден"
   abort e.message
 end
 
@@ -80,24 +80,23 @@ Telegram::Bot::Client.run(TOKEN) do |bot|
       when '/start', '/start start'
         bot.api.send_message(
             chat_id: message.chat.id,
-            text: "Здравствуй, #{message.from.first_name}.\n" +
-                "Можешь задать мне любой интересующий тебя вопрос..."
+            text: "Здравствуй, #{message.from.first_name}."
         )
       else
         react_names_lines.each do |name|
-          if message.text.downcase.include? name
-              bot.api.send_message(chat_id: message.chat.id, text: who_is_it_lines.sample) 
-            break
+          if /#{name}/i =~ message.text
+            bot.api.send_message(chat_id: message.chat.id, text: who_is_it_lines.sample) 
+            exit
           end
         end
         react_places_lines.each do |place|
-          if message.text.downcase.include? place
-              bot.api.send_message(chat_id: message.chat.id, text: where_are_you_lines.sample) 
-            break
+          if /#{place}/i =~ message.text
+            bot.api.send_message(chat_id: message.chat.id, text: where_are_you_lines.sample) 
+            exit
           end
         end
         sleep 1
-        bot.api.send_message(chat_id: message.chat.id, text: philosophy.sample) if ( rand(0..100) > 1 )      
+        bot.api.send_message(chat_id: message.chat.id, text: philosophy_lines.sample) if rand() < 1
     end
   end
 end
