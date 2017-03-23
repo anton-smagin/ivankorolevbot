@@ -3,7 +3,7 @@
 
 require 'telegram/bot'
 
-TOKEN = ENV['TELEGRAM_BOT_API_TOKEN']
+TOKEN = ENV['TELEGRAM_TOKEN']
 
 require "./data/chat"
 require "./data/react"
